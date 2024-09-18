@@ -3,11 +3,7 @@
 
 Alexander Alexandrovich Stepanov je rusko-americký vědec v oboru informatiky a výpočetní techniky. Byl vrcholovým manažerem ve společnostech SGI, AT&T a Compaq. Známý je především jako tvůrce knihovny STL (Standard Template Library), která se stala součástí standardní knihovny C++.
 
-* Narodil se 16. listopadu 1950 v Moskvě na Ostožence.
-
-* V letech 1967 až 1972 studoval matematiku na Fakultě mechaniky a matematiky Moskevské státní univerzity. 
-
-* V roce 1973 získal diplom učitele matematiky na Krupské moskevském regionálním pedagogickém institutu.
+Narodil se 16. listopadu 1950 v Moskvě na Ostožence. V letech 1967 až 1972 studoval matematiku na Fakultě mechaniky a matematiky Moskevské státní univerzity. V roce 1973 získal diplom učitele matematiky na Krupské moskevském regionálním pedagogickém institutu.
 
 * V roce 1977 emigroval do USA. Začal pracovat ve výzkumném centru General Electric v Schenectady v New Yorku. V této době pracoval na programovacím jazyce Tecton.
 
