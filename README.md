@@ -1,5 +1,6 @@
 # Alexander Stepanov
 ![Alexander Stepanov](https://upload.wikimedia.org/wikipedia/commons/1/1c/Alexander_Stepanov.jpg)
+
 Alexander Alexandrovich Stepanov je rusko-americký vědec v oboru informatiky a výpočetní techniky. Byl vrcholovým manažerem ve společnostech SGI, AT&T a Compaq. Známý je především jako tvůrce knihovny STL (Standard Template Library), která se stala součástí standardní knihovny C++.
 
 * Narodil se 16. listopadu 1950 v Moskvě na Ostožence.
