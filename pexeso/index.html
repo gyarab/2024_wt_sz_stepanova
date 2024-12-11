@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pexeso</title>
+
+        <style>
+			img {
+				width: 180px;
+				height: 180px;
+			}
+		</style>
+
+		    <script>
+                const cards = [];
+                const size = 16;
+
+                let srcBack = "https://media.istockphoto.com/id/1051725206/vector/wild-berry-seamless-pattern-drawing-hand-drawn-vintage-vector-background-summer-fruit.jpg?s=2048x2048&w=is&k=20&c=OSlBmivXQdQ8Umfo5asw-zm709oG_Hbfvt6idg1zyY4=";
+                let srcFront = ["https://t4.ftcdn.net/jpg/08/24/83/49/240_F_824834967_sO7QhOhO4A0Rs5X74IVhSLZEGAzJjwYv.jpg",
+                                "https://t3.ftcdn.net/jpg/05/87/57/46/240_F_587574684_bnMRh9o83PJWoWnnP09TnLiee5kWBDcA.jpg",
+                                "https://t4.ftcdn.net/jpg/07/00/63/49/240_F_700634953_2E6c93oVkJaxS1Ne3lvNARF074792Mdh.jpg",
+                                "https://t4.ftcdn.net/jpg/08/29/35/51/240_F_829355185_33tulYsow4iGBy2hv0vsSNpMW7veqMjH.jpg",
+                                "https://t4.ftcdn.net/jpg/08/37/70/67/240_F_837706729_wZOZVnCJv4luwWsnvbZ3nAqERj2NIwLp.jpg",
+                                "https://t3.ftcdn.net/jpg/08/61/50/10/240_F_861501010_nrCiwa9E6WzvEQeqWfTgshH1mI0kcHD4.jpg",
+                                "https://t4.ftcdn.net/jpg/08/52/42/21/240_F_852422169_cotyfCYhdCzYklBMutGcPBVoqyEoCcaT.jpg",
+                                "https://t4.ftcdn.net/jpg/09/10/44/13/240_F_910441326_yFo7pYTSMUZIBFF9KjxE1jg9bjUDayrU.jpg"];
+
+                let prevCard;
+                let score;
+                let srcEmpty = "https://www.profesnikvalifikacestrazny.cz/wp-content/uploads/2015/06/fajfka.png";
+                let removedCards = [];
+                let removedCardInd = 0;
+
+			    function akce(card) {
+                    if (removedCards.includes(card.id)){
+                        return;
+                    }
+
+                    let index = card.id.substring(3);
+                    let cardImage = cards[index]; 
+
+                    if (prevCard == null) {
+                        if (card.src == srcBack) {
+                            card.src = cardImage;
+                        }
+                        prevCard = card;
+                    }
+                    else {
+                        let prevCardindex = prevCard.id.substring(3);
+                        let prevCardImage = cards[prevCardindex];                    
+
+                        if (cardImage == prevCardImage) {
+                            prevCard.src = prevCardImage;
+                            card.src = cardImage;
+                            score = score + 1;
+                            removedCards[removedCardInd++] = card.id;
+                            removedCards[removedCardInd++] = prevCard.id;
+
+                            setTimeout(() => {
+                                prevCard.src = srcEmpty;
+                                card.src = srcEmpty;
+                                prevCard = null;
+                            }, 1000);
+
+                            updateScore(score);
+                        }
+                        else {
+                            card.src = cardImage;
+                            setTimeout(() => {
+                                card.src = srcBack;
+                                prevCard.src = srcBack;
+                                prevCard = null;
+                            }, 1000);
+                        }
+                    }
+                }   
+
+                function reset() {
+                    for (let i = 0; i < size; i++) {
+                        let obr = document.getElementById("obr"+i);
+                        obr.src = srcBack;
+                    }
+
+                    for (let i = 0; i < size / 2; i++) {
+                        cards[i*2] = srcFront[i];
+                        cards[i*2+1] = srcFront[i];
+                    }
+
+                    for (let i = 0; i < size; i++) {
+                        let i1 = randomize();
+                        let i2 = randomize();
+
+                        let c1 = cards[i1];
+                        cards[i1] = cards[i2];
+                        cards[i2] = c1;
+                    }
+                    
+                    score = 0;
+                    removedCards = [];
+                    removedCardInd = 0;
+                    updateScore(score);                  
+                }
+
+                function randomize() {
+                    return Math.floor(Math.random() * size);
+                }
+
+                function updateScore(score) {
+                    let scoreEl = document.getElementById('score');
+                    scoreEl.innerHTML = "score: " + score;
+                }
+            </script>
+	</head>
+
+	<body onload = "reset()">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <div class="container">
+			<h1>Pexeso</h1>
+            <table cellpadding=10>
+                <tr>
+                    <td><img id="obr0" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr1" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr2" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr3" src="" onclick="akce(this)"/></td>
+                </tr>
+                <tr>
+                    <td><img id="obr4" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr5" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr6" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr7" src="" onclick="akce(this)"/></td>
+                </tr>
+                <tr>
+                    <td><img id="obr8" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr9" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr10" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr11" src="" onclick="akce(this)"/></td>
+                </tr>
+                <tr>
+                    <td><img id="obr12" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr13" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr14" src="" onclick="akce(this)"/></td>
+                    <td><img id="obr15" src="" onclick="akce(this)"/></td>
+                </tr>
+            </table>
+            
+            <h4 id="score"></h4>
+            <button 
+                    type="button" class="btn btn-outline-primary btn-lg" onclick="reset()" >
+                    Reset
+            </button>
+
+        </div>
+	</body>
+</html>
